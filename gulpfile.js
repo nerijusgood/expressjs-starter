@@ -35,7 +35,7 @@ gulp.task('browser-sync', function () {
       'public/js/*.js',
       'public/img/**/*',
       'public/fonts/**/*',
-      'views/**/*.jade'
+      'views/**/*.pug'
     ],
     proxy: 'http://localhost:3000/',
     port: '8000',
@@ -93,7 +93,7 @@ gulp.task('css', function () {
 gulp.task('develop', function () {
   return nodemon({
     script: 'bin/www',
-    ext: 'js jade',
+    ext: 'js pug',
     stdout: false,
     ignore: ['src/**/*', 'public/css/**/*', 'public/img/**/*']
   }).on('readable', function () {
@@ -118,7 +118,6 @@ function bundle_js (bundler) {
   .on('error', gutil.log)
   .pipe(source('main.js'))
   .pipe(buffer())
-  .pipe(gulp.dest('js'))
   .pipe(sourcemaps.init({ loadMaps: true }))
     // capture sourcemaps from transforms
     .pipe(uglify())
